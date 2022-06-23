@@ -1,0 +1,22 @@
+{
+  "root": true,
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": ["@typescript-eslint"],
+  "rules": {},
+  "parser": "@typescript-eslint/parser",
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": ">=18.0.0"
+    }
+  },
+  "env": {
+    "browser": true,
+    "amd": true,
+    "node": true
+  }
+}
