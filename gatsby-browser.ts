@@ -1,8 +1,8 @@
 import './src/global.css';
 import { initiateTheme } from './src/shared/theme';
 
-const onInitialClientRender = () => {
+const onClientEntry = () => {
   initiateTheme();
 };
 
-export { onInitialClientRender };
+export { onClientEntry };

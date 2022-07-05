@@ -10,7 +10,7 @@ const Top = () => {
   const [currentThemeDarkMode, setCurrentThemeDarkMode] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => setCurrentThemeDarkMode(isDarkTheme()), 0);
+    setCurrentThemeDarkMode(isDarkTheme());
   }, []);
 
   const onToggleTheme = () => {
