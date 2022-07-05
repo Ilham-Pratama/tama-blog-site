@@ -3,9 +3,9 @@ import type { GatsbyConfig } from 'gatsby';
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `Tama Blog`,
-    siteUrl: 'http://localhost:8000',
+    siteUrl: 'https://tamablog.gatsbyjs.io',
     description: 'Welcome to my blog site where I post many kind of things',
-    image: '/cat.png',
+    image: 'https://tamablog.gatsbyjs.io/cat.png',
     author: '@ilhamPr57825345',
     menuLinks: [
       {
