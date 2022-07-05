@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BrightModeIcon from 'assets/icons/BrightModeIcon';
 import DarkModeIcon from 'assets/icons/DarkModeIcon';
 import Button from 'components/Button';
@@ -7,12 +7,11 @@ import Text from 'components/Text';
 import { Link } from 'gatsby';
 
 const Top = () => {
-  const [currentThemeDarkMode, setCurrentThemeDarkMode] = useState(isDarkTheme);
+  const [currentThemeDarkMode, setCurrentThemeDarkMode] = useState(false);
 
-  // useEffect(() => {
-  // setTimeout(() => setCurrentThemeDarkMode(isDarkTheme()), 0);
-  // setCurrentThemeDarkMode(isDarkTheme());
-  // }, []);
+  useEffect(() => {
+    setCurrentThemeDarkMode(isDarkTheme());
+  }, []);
 
   const onToggleTheme = () => {
     setCurrentThemeDarkMode(current => !current);
