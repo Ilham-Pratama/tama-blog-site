@@ -7,11 +7,14 @@ import Text from 'components/Text';
 import { Link } from 'gatsby';
 
 const Top = () => {
-  const [currentThemeDarkMode, setCurrentThemeDarkMode] = useState(false);
+  const [currentThemeDarkMode, setCurrentThemeDarkMode] = useState(
+    isDarkTheme()
+  );
 
-  useEffect(() => {
-    setTimeout(() => setCurrentThemeDarkMode(isDarkTheme()), 0);
-  }, []);
+  // useEffect(() => {
+  // setTimeout(() => setCurrentThemeDarkMode(isDarkTheme()), 0);
+  // setCurrentThemeDarkMode(isDarkTheme());
+  // }, []);
 
   const onToggleTheme = () => {
     setCurrentThemeDarkMode(current => !current);
