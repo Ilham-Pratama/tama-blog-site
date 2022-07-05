@@ -5,7 +5,7 @@ const config: GatsbyConfig = {
     title: `Tama Blog`,
     siteUrl: 'https://tamablog.gatsbyjs.io',
     description: 'Welcome to my blog site where I post many kind of things',
-    image: 'https://tamablog.gatsbyjs.io//cat.png',
+    image: 'https://tamablog.gatsbyjs.io/cat.png',
     author: '@ilhamPr57825345',
     menuLinks: [
       {
