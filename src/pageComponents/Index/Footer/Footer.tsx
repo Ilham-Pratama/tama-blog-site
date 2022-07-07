@@ -8,7 +8,7 @@ import GithubIcon from 'assets/icons/GithubIcon';
 const Footer = () => {
   return (
     <div className="border-t-2 flex sm:flex-row flex-col items-center sm:justify-between py-4 border-gray-300 dark:border-slate-700 text-sm">
-      <Text className="flex-1">© 2022 Ilham Pratama</Text>
+      <Text className="flex-1">© {new Date().getFullYear()} Ilham Pratama</Text>
       <div className="flex justify-center flex-1 my-5 sm:my-0">
         <a
           href="https://github.com/Ilham-Pratama"
