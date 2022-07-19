@@ -7,9 +7,7 @@ import Text from 'components/Text';
 import { Link } from 'gatsby';
 
 const Top = () => {
-  const [currentThemeDarkMode, setCurrentThemeDarkMode] = useState(
-    isDarkTheme()
-  );
+  const [currentThemeDarkMode, setCurrentThemeDarkMode] = useState(isDarkTheme);
 
   const onToggleTheme = () => {
     toggleTheme();
