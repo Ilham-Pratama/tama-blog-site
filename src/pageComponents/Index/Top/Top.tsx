@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from 'react';
+import React, { useState } from 'react';
 import BrightModeIcon from 'assets/icons/BrightModeIcon';
 import DarkModeIcon from 'assets/icons/DarkModeIcon';
 import Button from 'components/Button';
@@ -7,15 +7,13 @@ import Text from 'components/Text';
 import { Link } from 'gatsby';
 
 const Top = () => {
-  const [currentThemeDarkMode, setCurrentThemeDarkMode] = useState(false);
-
-  useLayoutEffect(() => {
-    setCurrentThemeDarkMode(isDarkTheme());
-  }, []);
+  const [currentThemeDarkMode, setCurrentThemeDarkMode] = useState(
+    isDarkTheme()
+  );
 
   const onToggleTheme = () => {
-    setCurrentThemeDarkMode(current => !current);
     toggleTheme();
+    setCurrentThemeDarkMode(!currentThemeDarkMode);
   };
 
   return (
