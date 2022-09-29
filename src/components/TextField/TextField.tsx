@@ -6,6 +6,9 @@ export interface TextFieldProps {
   placeholder?: string;
   required?: boolean;
   textarea?: boolean;
+  onChange?: (
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) => void;
 }
 
 const TextField = ({
@@ -13,7 +16,8 @@ const TextField = ({
   type,
   placeholder,
   required,
-  textarea
+  textarea,
+  onChange
 }: TextFieldProps) => {
   if (textarea) {
     return (
@@ -21,6 +25,7 @@ const TextField = ({
         name={name}
         placeholder={placeholder}
         required={required}
+        onChange={e => onChange && onChange(e)}
         className="outline-none w-full p-4 rounded-md bg-gray-200 placeholder:text-gray-400 dark:bg-slate-700 dark:text-slate-100 border-slate-300"
         rows={4}
       />
@@ -32,6 +37,7 @@ const TextField = ({
       name={name}
       placeholder={placeholder}
       required={required}
+      onChange={e => onChange && onChange(e)}
       className="outline-none w-full p-4 rounded-md bg-gray-200 placeholder:text-gray-400 dark:bg-slate-700 dark:text-slate-100 border-slate-300"
     />
   );

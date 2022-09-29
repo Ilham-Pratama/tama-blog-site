@@ -1,26 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StaticImage } from 'gatsby-plugin-image';
 import Text from 'components/Text';
 import PackageItem from 'components/PackageItem';
 import TextField from 'components/TextField';
 import Button from 'components/Button';
 import { Link } from 'gatsby';
+import {
+  contactMeSubmissionLog,
+  emailLinkClickLog
+} from 'shared/analyticLogger';
 
 const ContactMeForm = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
   return (
     <form
       action="https://formspree.io/f/xbjwejqg"
       method="POST"
       autoComplete="off"
+      onSubmit={() => {
+        if (name && email && message)
+          contactMeSubmissionLog(name, email, message);
+      }}
       className="mt-6">
       <Text className="mb-3 text-xl text-center">
         <b>Contact Me</b>
       </Text>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <TextField name="name" placeholder="Name" required />
-        <TextField name="_replyto" type="email" placeholder="Email" required />
+        <TextField
+          name="name"
+          placeholder="Name"
+          onChange={e => setName(e.target.value)}
+          required
+        />
+        <TextField
+          name="_replyto"
+          type="email"
+          placeholder="Email"
+          onChange={e => setEmail(e.target.value)}
+          required
+        />
         <div className="sm:col-span-2">
-          <TextField name="message" placeholder="Message" required textarea />
+          <TextField
+            name="message"
+            placeholder="Message"
+            onChange={e => setMessage(e.target.value)}
+            required
+            textarea
+          />
         </div>
         <input
           type="hidden"
@@ -38,6 +66,7 @@ const ContactMeForm = () => {
           href="mailto:ilhamprt5@gmail.com"
           target="_blank"
           rel="noopener noreferer"
+          onClick={() => emailLinkClickLog()}
           className="hover:underline text-sky-600 dark:text-sky-300">
           ilhamprt5@gmail.com
         </a>{' '}
