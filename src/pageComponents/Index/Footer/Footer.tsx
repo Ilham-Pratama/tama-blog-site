@@ -4,10 +4,9 @@ import FacebookIcon from 'assets/icons/FacebookIcon';
 import TwitterIcon from 'assets/icons/TwitterIcon';
 import LinkedInIcon from 'assets/icons/LinkedInIcon';
 import GithubIcon from 'assets/icons/GithubIcon';
-import {
-  gatsbyLinkClickLog,
-  socialMediaLinkClickLog
-} from 'shared/analyticLogger';
+import { FirebaseAnalytic } from 'shared/analyticLogger';
+
+const firebaseAnalytic = new FirebaseAnalytic();
 
 const Footer = () => {
   return (
@@ -17,7 +16,11 @@ const Footer = () => {
         <a
           href="https://github.com/Ilham-Pratama"
           target="_blank"
-          onClick={() => socialMediaLinkClickLog('github')}
+          onClick={() =>
+            firebaseAnalytic.logEvent('social-media-link-click', {
+              name: 'github'
+            })
+          }
           rel="noopener noreferrer">
           <GithubIcon
             width={25}
@@ -28,7 +31,11 @@ const Footer = () => {
         <a
           href="https://twitter.com/IlhamPr57825345"
           target="_blank"
-          onClick={() => socialMediaLinkClickLog('twitter')}
+          onClick={() =>
+            firebaseAnalytic.logEvent('social-media-link-click', {
+              name: 'twitter'
+            })
+          }
           rel="noopener noreferrer">
           <TwitterIcon
             width={25}
@@ -39,7 +46,11 @@ const Footer = () => {
         <a
           href="https://www.linkedin.com/in/ilham-pratama-6354a11ba/"
           target="_blank"
-          onClick={() => socialMediaLinkClickLog('linked-in')}
+          onClick={() =>
+            firebaseAnalytic.logEvent('social-media-link-click', {
+              name: 'linked'
+            })
+          }
           rel="noopener noreferrer">
           <LinkedInIcon
             width={25}
@@ -50,7 +61,11 @@ const Footer = () => {
         <a
           href="https://web.facebook.com/profile.php?id=100008356693910"
           target="_blank"
-          onClick={() => socialMediaLinkClickLog('facebook')}
+          onClick={() =>
+            firebaseAnalytic.logEvent('social-media-link-click', {
+              name: 'facebook'
+            })
+          }
           rel="noopener noreferrer">
           <FacebookIcon
             width={25}
@@ -65,7 +80,7 @@ const Footer = () => {
           href="https://www.gatsbyjs.com/"
           target="_blank"
           rel="noopener noreferer"
-          onClick={() => gatsbyLinkClickLog()}
+          onClick={() => firebaseAnalytic.logEvent('gatsby-link-click')}
           className="hover:underline text-sky-600 dark:text-sky-300">
           Gatsby
         </a>

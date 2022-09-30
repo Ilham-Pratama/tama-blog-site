@@ -1,44 +1,44 @@
-import { logEvent } from '@firebase/analytics';
-import { analytics } from './firebase';
+import {
+  getAnalytics,
+  logEvent,
+  isSupported,
+  Analytics
+} from '@firebase/analytics';
+import { firebaseApp } from './firebase';
 
-export const blogLinkClickLog = () => {
-  logEvent(analytics, 'blog-link-click');
-};
+export type EventLoggerType =
+  | 'blog-link-click'
+  | 'go-back-home-button-click'
+  | 'dark-mode-adjustment'
+  | 'personal-project-link-click'
+  | 'contact-me-submission'
+  | 'email-link-click'
+  | 'social-media-link-click'
+  | 'gatsby-link-click';
 
-export const goBackHomeButtonClickLog = () => {
-  logEvent(analytics, 'go-back-home-button-click');
-};
+export interface Payload {
+  mode?: 'dark' | 'light';
+  projectName?: string;
+  projectType?: string;
+  name?: string;
+  email?: string;
+  message?: string;
+}
 
-export const darkModeAdjustmentLog = (mode: 'dark' | 'light') => {
-  logEvent(analytics, 'dark-mode-adjustment', { mode });
-};
+class FirebaseAnalytic {
+  analytics: Analytics | undefined;
 
-export const personalProjectLinkClickLog = (
-  projectName: string,
-  projectType: string
-) => {
-  logEvent(analytics, 'personal-project-link-click', {
-    projectName,
-    projectType
-  });
-};
+  constructor() {
+    isSupported().then(shouldSupport => {
+      if (shouldSupport) {
+        this.analytics = getAnalytics(firebaseApp);
+      }
+    });
+  }
 
-export const contactMeSubmissionLog = (
-  name: string,
-  email: string,
-  message: string
-) => {
-  logEvent(analytics, 'contact-me-submission', { name, email, message });
-};
+  logEvent(eventName: EventLoggerType, payload?: Payload) {
+    if (this.analytics) logEvent(this.analytics, eventName, payload);
+  }
+}
 
-export const emailLinkClickLog = () => {
-  logEvent(analytics, 'email-link-click');
-};
-
-export const socialMediaLinkClickLog = (name: string) => {
-  logEvent(analytics, 'social-media-link-click', { name });
-};
-
-export const gatsbyLinkClickLog = () => {
-  logEvent(analytics, 'gatsby-link-click');
-};
+export { FirebaseAnalytic };

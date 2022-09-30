@@ -5,7 +5,9 @@ import Button from 'components/Button';
 import { isDarkTheme, toggleTheme } from 'shared/theme';
 import Text from 'components/Text';
 import { Link } from 'gatsby';
-import { blogLinkClickLog, darkModeAdjustmentLog } from 'shared/analyticLogger';
+import { FirebaseAnalytic } from 'shared/analyticLogger';
+
+const firebaseAnalytic = new FirebaseAnalytic();
 
 const Top = () => {
   const [currentThemeDarkMode, setCurrentThemeDarkMode] = useState(false);
@@ -16,7 +18,9 @@ const Top = () => {
 
   const onToggleTheme = () => {
     setCurrentThemeDarkMode(current => {
-      darkModeAdjustmentLog(current ? 'light' : 'dark');
+      firebaseAnalytic.logEvent('dark-mode-adjustment', {
+        mode: current ? 'light' : 'dark'
+      });
       return !current;
     });
     toggleTheme();
@@ -31,7 +35,10 @@ const Top = () => {
         </p>
       </div>
       <div className="flex items-center">
-        <Link to="/blog" onClick={blogLinkClickLog} className="mr-5">
+        <Link
+          to="/blog"
+          onClick={() => firebaseAnalytic.logEvent('blog-link-click')}
+          className="mr-5">
           <Text className="text-xl font-raleway font-bold">blog</Text>
         </Link>
         <Button onClick={onToggleTheme} noStyle>

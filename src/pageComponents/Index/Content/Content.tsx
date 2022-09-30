@@ -5,10 +5,9 @@ import PackageItem from 'components/PackageItem';
 import TextField from 'components/TextField';
 import Button from 'components/Button';
 import { Link } from 'gatsby';
-import {
-  contactMeSubmissionLog,
-  emailLinkClickLog
-} from 'shared/analyticLogger';
+import { FirebaseAnalytic } from 'shared/analyticLogger';
+
+const firebaseAnalytic = new FirebaseAnalytic();
 
 const ContactMeForm = () => {
   const [name, setName] = useState('');
@@ -21,7 +20,11 @@ const ContactMeForm = () => {
       autoComplete="off"
       onSubmit={() => {
         if (name && email && message)
-          contactMeSubmissionLog(name, email, message);
+          firebaseAnalytic.logEvent('contact-me-submission', {
+            name,
+            email,
+            message
+          });
       }}
       className="mt-6">
       <Text className="mb-3 text-xl text-center">
@@ -66,7 +69,7 @@ const ContactMeForm = () => {
           href="mailto:ilhamprt5@gmail.com"
           target="_blank"
           rel="noopener noreferer"
-          onClick={() => emailLinkClickLog()}
+          onClick={() => firebaseAnalytic.logEvent('email-link-click')}
           className="hover:underline text-sky-600 dark:text-sky-300">
           ilhamprt5@gmail.com
         </a>{' '}
