@@ -2,7 +2,13 @@ import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import { Helmet } from 'react-helmet';
 
-const SEO = () => {
+interface SEOInterface {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const SEO = ({ title, image, description }: SEOInterface) => {
   const data = useStaticQuery(graphql`
     query {
       site {
@@ -16,32 +22,47 @@ const SEO = () => {
       }
     }
   `);
+
+  const siteTitle = `${title ? `${title} | ` : ''}${
+    data.site.siteMetadata.title
+  }`;
+  const siteDesc = description
+    ? description
+    : data.site.siteMetadata.description;
+  const siteImage = image ? image : data.site.siteMetadata.image;
+
   return (
     <Helmet>
       <meta charSet="utf-8" />
 
-      <title>{data.site.siteMetadata.title}</title>
-      <meta name="description" content={data.site.siteMetadata.description} />
-      <link rel="icon" href={data.site.siteMetadata.image} type="image/png" />
+      <title>{siteTitle}</title>
+      <meta
+        name="description"
+        content={siteDesc}
+      />
+      <link rel="icon" href={siteImage} type="image/png" />
       <meta name="robots" content="index" />
-      <meta name="image" content={data.site.siteMetadata.image} />
+      <meta
+        name="image"
+        content={siteImage}
+      />
       <link rel="canonical" href={data.site.siteMetadata.siteUrl} />
 
-      <meta name="og:title" content={data.site.siteMetadata.title} />
+      <meta name="og:title" content={siteTitle} />
       <meta
         name="og:description"
-        content={data.site.siteMetadata.description}
+        content={siteDesc}
       />
-      <meta name="og:site_name" content={data.site.siteMetadata.title} />
-      <meta name="og:image" content={data.site.siteMetadata.image} />
+      <meta name="og:site_name" content={siteTitle} />
+      <meta name="og:image" content={siteImage} />
       <meta name="og:url" content={data.site.siteMetadata.siteUrl} />
 
-      <meta name="twitter:image" content={data.site.siteMetadata.image} />
+      <meta name="twitter:image" content={siteImage} />
       <meta
         name="twitter:description"
-        content={data.site.siteMetadata.description}
+        content={siteDesc}
       />
-      <meta name="twitter:title" content={data.site.siteMetadata.title} />
+      <meta name="twitter:title" content={siteTitle} />
       <meta name="twitter:creator" content="@ilhamPr57825345" />
       <meta name="twitter:card" content="summary_large_image" />
     </Helmet>

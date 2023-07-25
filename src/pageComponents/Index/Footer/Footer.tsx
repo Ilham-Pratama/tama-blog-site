@@ -1,5 +1,6 @@
 import React from 'react';
 import Text from 'components/Text';
+import { Link } from 'gatsby';
 import FacebookIcon from 'assets/icons/FacebookIcon';
 import TwitterIcon from 'assets/icons/TwitterIcon';
 import LinkedInIcon from 'assets/icons/LinkedInIcon';
@@ -11,7 +12,7 @@ const firebaseAnalytic = new FirebaseAnalytic();
 const Footer = () => {
   return (
     <div className="border-t-2 flex sm:flex-row flex-col items-center sm:justify-between py-4 border-gray-300 dark:border-slate-700 text-sm">
-      <Text className="flex-1">© 2022 Ilham Pratama</Text>
+      <Text className="flex-1">© 2023 Ilham Pratama</Text>
       <div className="flex justify-center flex-1 my-5 sm:my-0">
         <a
           href="https://github.com/Ilham-Pratama"
@@ -74,17 +75,11 @@ const Footer = () => {
           />
         </a>
       </div>
-      <Text className="flex-1 text-right">
-        Made with{' '}
-        <a
-          href="https://www.gatsbyjs.com/"
-          target="_blank"
-          rel="noopener noreferer"
-          onClick={() => firebaseAnalytic.logEvent('gatsby-link-click')}
-          className="hover:underline text-sky-600 dark:text-sky-300">
-          Gatsby
-        </a>
-      </Text>
+      <Link
+        className="flex-1 hover:underline text-slate-700 dark:text-sky-100 text-right"
+        to="/">
+        Home
+      </Link>
     </div>
   );
 };
