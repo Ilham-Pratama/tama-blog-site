@@ -95,7 +95,7 @@ const Content = () => {
         <Text className="text-center mt-3">
           I'm familiar with numbers of technologies that are written in{' '}
           <b>JavaScript</b>. I'm also an open-source enthusiast. Here are some
-          packages I have published:
+          packages I published:
         </Text>
         <div className="grid grid-cols-1 sm:grid-cols-2 max-w-sm sm:max-w-none gap-4 mt-5 mb-8 m-auto">
           <PackageItem
@@ -109,7 +109,7 @@ const Content = () => {
         </div>
         <div className="text-center mb-8">
           <Text>
-            I also like playing some Indie games. My personal favorites are{' '}
+            I also like playing some games. My personal favorites are{' '}
             <a
               href="https://www.stardewvalley.net/"
               target="_blank"
@@ -119,11 +119,11 @@ const Content = () => {
             </a>
             ,{' '}
             <a
-              href="https://www.hollowknight.com/"
+              href="https://en.bandainamcoent.eu/elden-ring/elden-ring"
               target="_blank"
               rel="noopener noreferer"
               className="hover:underline text-sky-600 dark:text-sky-300">
-              Hollow Knight 🗡️
+              Elden Ring 🗡️
             </a>
             , and{' '}
             <a
@@ -135,18 +135,6 @@ const Content = () => {
             </a>
             .
           </Text>
-          <div className="mt-5 bg-slate-200 dark:bg-slate-700 rounded-sm p-3">
-            <Text>
-              <b>Note:</b> As of now, I'm still working on my{' '}
-              <Link
-                to="/blog"
-                className="hover:underline text-sky-600 dark:text-sky-300">
-                blog
-              </Link>
-              . I'm still figuring out what CMS I should post all the content.
-              Hopefully, I can get it done soon. 😃
-            </Text>
-          </div>
         </div>
         <ContactMeForm />
       </div>

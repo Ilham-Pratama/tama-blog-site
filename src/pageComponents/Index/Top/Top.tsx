@@ -10,10 +10,12 @@ import { FirebaseAnalytic } from 'shared/analyticLogger';
 const firebaseAnalytic = new FirebaseAnalytic();
 
 const Top = () => {
+  const [pathname, setPathname] = useState('');
   const [currentThemeDarkMode, setCurrentThemeDarkMode] = useState(false);
 
   useEffect(() => {
     setCurrentThemeDarkMode(isDarkTheme());
+    setPathname(typeof window !== undefined ? window.location.pathname : '');
   }, []);
 
   const onToggleTheme = () => {
@@ -28,24 +30,29 @@ const Top = () => {
 
   return (
     <div className="pt-5 flex justify-between">
-      <div className="flex text-3xl items-center">
-        <Text className="font-bold font-raleway">Tama</Text>
+      <Link
+        style={{ textDecoration: 'none' }}
+        to="/"
+        className="flex text-3xl items-center">
+        <Text className="font-normal font-raleway">Tama</Text>
         <p className="font-raleway ml-2 px-2 font-thin rounded dark:bg-slate-100 bg-slate-800 dark:text-slate-800 text-slate-100">
           blog
         </p>
-      </div>
-      <div className="flex items-center">
-        <Link
-          to="/blog"
-          onClick={() => firebaseAnalytic.logEvent('blog-link-click')}
-          className="mr-5">
-          <Text className="text-xl font-raleway font-bold">blog</Text>
-        </Link>
+      </Link>
+      <div className="flex items-start">
+        {!pathname.endsWith('/blogs/') ? (
+          <Link
+            to="/blogs/"
+            onClick={() => firebaseAnalytic.logEvent('blog-link-click')}
+            className="mr-5">
+            <Text className="text-xl font-raleway font-semibold">Blog</Text>
+          </Link>
+        ) : null}
         <Button onClick={onToggleTheme} noStyle>
           {!currentThemeDarkMode ? (
-            <BrightModeIcon className="fill-sky-400" height="30" width="30" />
+            <DarkModeIcon className="fill-sky-400" height="30" width="30" />
           ) : (
-            <DarkModeIcon className="fill-sky-100" height="30" width="30" />
+            <BrightModeIcon className="fill-sky-100" height="30" width="30" />
           )}
         </Button>
       </div>

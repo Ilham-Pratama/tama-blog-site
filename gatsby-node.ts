@@ -9,7 +9,8 @@ exports.onCreateWebpackConfig = ({ actions }) => {
         pages: path.resolve(__dirname, 'src/pages'),
         shared: path.resolve(__dirname, 'src/shared'),
         types: path.resolve(__dirname, 'src/types'),
-        assets: path.resolve(__dirname, 'src/assets')
+        assets: path.resolve(__dirname, 'src/assets'),
+        styles: path.resolve(__dirname, 'src/styles'),
       }
     }
   });

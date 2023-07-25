@@ -13,8 +13,8 @@ const config: GatsbyConfig = {
         link: '/'
       },
       {
-        name: 'blog',
-        link: '/blog'
+        name: 'blogs',
+        link: '/blogs'
       }
     ]
   },
@@ -23,12 +23,11 @@ const config: GatsbyConfig = {
   // Learn more at: https://gatsby.dev/graphql-typegen
   graphqlTypegen: true,
   plugins: [
+    'gatsby-plugin-postcss',
     'gatsby-plugin-image',
     'gatsby-plugin-react-helmet',
-    'gatsby-plugin-mdx',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
-    'gatsby-plugin-postcss',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -46,12 +45,44 @@ const config: GatsbyConfig = {
       __key: 'pages'
     },
     {
-      resolve: 'gatsby-plugin-web-font-loader',
+      resolve: `gatsby-source-filesystem`,
       options: {
-        google: {
-          families: ['Poppins', 'Raleway']
-        }
+        name: `blogs`,
+        path: `./src/blogs`
       }
+    },
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              // It's important to specify the maxWidth (in pixels) of
+              // the content container as this plugin uses this as the
+              // base for generating different widths of each image.
+              maxWidth: 350
+            }
+          }
+        ]
+      }
+    },
+    {
+      resolve: `gatsby-plugin-webfonts`,
+      options: {
+        fonts: {
+          google: [
+            {
+              family: "Poppins",
+              variants: ["300", "400", "500", "600", "700"],
+            },
+            {
+              family: "Raleway",
+              variants: ["300", "400", "500", "600", "700"],
+            },
+          ],
+        },
+      },
     },
     {
       resolve: `gatsby-plugin-manifest`,
